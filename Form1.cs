@@ -12,9 +12,89 @@ namespace CalculatorInCSharp
 {
     public partial class Calculator : Form
     {
+        Double resultValue = 0;
+        String operationPerformed = "";
+        bool isOperationPerformed = false;
+
         public Calculator()
         {
             InitializeComponent();
         }
+
+        //Numbers
+        private void button_Click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(textBox1.Text == "0" || (isOperationPerformed))
+            {
+                textBox1.Clear();
+            }
+            if (button.Text == ".")
+            {
+                if (!textBox1.Text.Contains("."))
+                {
+                    textBox1.Text += button.Text;
+                }
+            }
+            else
+            {
+                textBox1.Text += button.Text;
+            }
+            
+            isOperationPerformed = false;
+        }
+
+        //Operators
+        private void operator_click(object sender, EventArgs e)
+        {
+            Button button = (Button)sender;
+            if(resultValue != 0)
+            {
+                buttonEqu.PerformClick();
+            }
+            operationPerformed = button.Text;
+            resultValue = Double.Parse(textBox1.Text);
+            label1.Text = resultValue + " " + operationPerformed;
+            isOperationPerformed = true;
+
+        }
+
+        //Other Buttons
+        private void buttonClearEntry_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "0";
+        }
+
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "0";
+            resultValue = 0;
+            label1.Text = "";
+        }
+
+        private void buttonEqu_Click(object sender, EventArgs e)
+        {
+
+            switch(operationPerformed)
+            {
+                case "+":
+                    textBox1.Text = (resultValue + Double.Parse(textBox1.Text)).ToString();
+                    break;
+                case "-":
+                    textBox1.Text = (resultValue - Double.Parse(textBox1.Text)).ToString();
+                    break;
+                case "*":
+                    textBox1.Text = (resultValue * Double.Parse(textBox1.Text)).ToString();
+                    break;
+                case "/":
+                    textBox1.Text = (resultValue / Double.Parse(textBox1.Text)).ToString();
+                    break;
+            }
+
+            resultValue = Double.Parse(textBox1.Text);
+            label1.Text = "";
+        }
+
+        
     }
 }
