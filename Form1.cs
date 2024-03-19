@@ -12,6 +12,7 @@ namespace CalculatorInCSharp
 {
     public partial class Calculator : Form
     {
+        //Variables
         Double resultValue = 0;
         String operationPerformed = "";
         bool isOperationPerformed = false;
@@ -19,6 +20,7 @@ namespace CalculatorInCSharp
         public Calculator()
         {
             InitializeComponent();
+            label1.Text = "";
         }
 
         //Numbers
@@ -74,7 +76,6 @@ namespace CalculatorInCSharp
 
         private void buttonEqu_Click(object sender, EventArgs e)
         {
-
             switch(operationPerformed)
             {
                 case "+":
@@ -93,6 +94,7 @@ namespace CalculatorInCSharp
 
             resultValue = Double.Parse(textBox1.Text);
             label1.Text = "";
+            isOperationPerformed = true;
         }
 
         
