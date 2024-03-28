@@ -50,10 +50,7 @@ namespace CalculatorInCSharp
         private void operator_click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
-            if(resultValue != 0)
-            {
-                buttonEqu.PerformClick();
-            }
+            
             operationPerformed = button.Text;
             resultValue = Double.Parse(textBox1.Text);
             label1.Text = resultValue + " " + operationPerformed;
@@ -76,25 +73,29 @@ namespace CalculatorInCSharp
 
         private void buttonEqu_Click(object sender, EventArgs e)
         {
-            switch(operationPerformed)
+            if (isOperationPerformed == false)
             {
-                case "+":
-                    textBox1.Text = (resultValue + Double.Parse(textBox1.Text)).ToString();
-                    break;
-                case "-":
-                    textBox1.Text = (resultValue - Double.Parse(textBox1.Text)).ToString();
-                    break;
-                case "*":
-                    textBox1.Text = (resultValue * Double.Parse(textBox1.Text)).ToString();
-                    break;
-                case "/":
-                    textBox1.Text = (resultValue / Double.Parse(textBox1.Text)).ToString();
-                    break;
-            }
+                switch (operationPerformed)
+                {
+                    case "+":
+                        textBox1.Text = (resultValue + Double.Parse(textBox1.Text)).ToString();
+                        break;
+                    case "-":
+                        textBox1.Text = (resultValue - Double.Parse(textBox1.Text)).ToString();
+                        break;
+                    case "*":
+                        textBox1.Text = (resultValue * Double.Parse(textBox1.Text)).ToString();
+                        break;
+                    case "/":
+                        textBox1.Text = (resultValue / Double.Parse(textBox1.Text)).ToString();
+                        break;
+                }
 
-            resultValue = Double.Parse(textBox1.Text);
-            label1.Text = "";
-            isOperationPerformed = true;
+                resultValue = Double.Parse(textBox1.Text);
+                label1.Text = "";
+                isOperationPerformed = true;
+            }
+            
         }
 
         
